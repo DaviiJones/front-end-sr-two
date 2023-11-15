@@ -25,7 +25,7 @@ function MovieEditForm(){
 
     const handleCheckboxChange = () => {
         setMovie({...movie, is_favorite: !movie.is_favorite});
-    }
+    };
 
     const updateMovie = () => {
         console.log(`${API}/movies/${id}`);
