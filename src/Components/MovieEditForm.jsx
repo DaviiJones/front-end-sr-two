@@ -97,16 +97,6 @@ function MovieEditForm(){
                 onChange={handleCheckboxChange}
                 checked={movie.is_favorite}
                 />
-                {/* <label htmlFor="description">Description:</label>
-                <textarea 
-                id="description"
-                name="description"
-                value={movie.description}
-                onChange={handleTextChange}
-                placeholder="Why is this movie considered your favorite?"
-                />
-                <br /> */}
-
                 <input type="submit" />
                 </form>
                 <Link to={`/movies/${id}`}>
