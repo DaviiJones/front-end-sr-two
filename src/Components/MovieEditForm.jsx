@@ -5,7 +5,7 @@ const API = import.meta.env.VITE_BASE_URL;
 
 
 function MovieEditForm(){
-    let {id} = useParams();
+    let { id } = useParams();
     const navigate = useNavigate();
 
     const [movie, setMovie] = useState({
@@ -25,41 +25,42 @@ function MovieEditForm(){
 
     const handleCheckboxChange = () => {
         setMovie({...movie, is_favorite: !movie.is_favorite});
-    
+    }
 
     const updateMovie = () => {
         console.log(`${API}/movies/${id}`);
 
         fetch(`${API}/movies/${id}`, {
             method: "PUT",
-            body: JSON.stringify(movie), 
+            body: JSON.stringify(movies), 
             headers: {
                 "Content-Type": "application/json",
             },
         })
-        .then((response) => {
+            .then((response) => {
             navigate(`/movies/${id}`);
         })
         .catch((error) => console.error("catch", error));
     
-    
+    };
+
     useEffect(() => {
         fetch(`${API}/movies/${id}`)
         .then((response) => {
             return response.json();
         })
         .then((responseJSON) => {
-            setMovie(repsonseJSON);
+            setMovie(responseJSON);
         })
         .catch((error) => console.error(error));
     }, [id]);
-}
+
     const handleSubmit = (event) => {
         event.preventDefault();
         updateMovie();
-    
-}
-    return(
+        };
+
+    return (
         <div className="Edit">
             <form onSubmit={handleSubmit}>
                 <label htmlFor="title">Title:</label>
@@ -97,6 +98,8 @@ function MovieEditForm(){
                 onChange={handleCheckboxChange}
                 checked={movie.is_favorite}
                 />
+                <br />
+
                 <input type="submit" />
                 </form>
                 <Link to={`/movies/${id}`}>
@@ -104,6 +107,6 @@ function MovieEditForm(){
                 </Link>
         </div>
     );
-}
-}
+};
+
 export default MovieEditForm;
